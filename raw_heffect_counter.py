@@ -16,7 +16,7 @@ GPIO.add_event_detect(FLOW_SENSOR, GPIO.RISING)
 raw_dict={}
 count = 0
 
-
+  
 while True:
 
   if GPIO.event_detected(FLOW_SENSOR)==True:
