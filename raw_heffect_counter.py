@@ -1,15 +1,9 @@
 
-from random import randint
 from sqlalchemy import create_engine
-import psycopg2
-
 import RPi.GPIO as GPIO
-import time, sys
 import datetime
-import csv
 import io
 import pandas as pd
-#from csv_test import cleaner
 from datetime import timedelta
 
 
@@ -19,35 +13,8 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(FLOW_SENSOR, GPIO.IN, pull_up_down = GPIO.PUD_UP) 
 GPIO.add_event_detect(FLOW_SENSOR, GPIO.RISING)
 
-
-
-global count
-global raw_dict
-
-#file_log="/home/pi/Desktop/Water_Sensor/water_log.csv"
-
-
-
 raw_dict={}
 count = 0
-
-
-#global logger
-#logger=[]
-
-logger=[]
-
-
-
-
-
-if init_time < datetime.datetime.now() - timedelta(seconds=60):
-    print("great than 60 seconds")
-    
-    
-
-
-
 
 
 while True:
@@ -88,16 +55,3 @@ while True:
       
       
       
-
-
-
-keys = test_dict.keys()
-columns = ','.join(keys)
-values = ','.join(['%({})s'.format(k) for k in keys])
-insert = 'insert into raw_effect_counts ({0} values ({1})'.format(columns, values)
-print(cursor.mogrify(insert, test_dict))
-
-
-
-
-
