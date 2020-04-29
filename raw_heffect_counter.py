@@ -6,7 +6,8 @@ import io
 import pandas as pd
 from datetime import timedelta
 
-
+pgres_user=""
+pgres_pass=""
 
 FLOW_SENSOR = 16
 GPIO.setmode(GPIO.BCM)
@@ -32,7 +33,7 @@ while True:
       raw_dict = pd.DataFrame(list(raw_dict.items()), columns=['record_date', 'total_count'])
       
       
-      engine=create_engine('postgresql://beef:Felicia2020#@water-logger.cmoec5ph6uhr.us-east-1.rds.amazonaws.com:5432/raw_logs')
+      engine=create_engine('postgresql://{pgres_user}:{pgres_pass}#@water-logger.cmoec5ph6uhr.us-east-1.rds.amazonaws.com:5432/raw_logs')
       conn = engine.raw_connection()
       cur = conn.cursor()
       output=io.StringIO()
