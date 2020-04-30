@@ -6,8 +6,6 @@ import io
 import pandas as pd
 from datetime import timedelta
 
-pgres_user=""
-pgres_pass=""
 
 FLOW_SENSOR = 16
 GPIO.setmode(GPIO.BCM)
@@ -16,24 +14,27 @@ GPIO.add_event_detect(FLOW_SENSOR, GPIO.RISING)
 
 raw_dict={}
 count = 0
+init_time = datetime.datetime.now()
 
+
+  
   
 while True:
 
   if GPIO.event_detected(FLOW_SENSOR)==True:
-     init_time = datetime.datetime.now()
+
      count = count + 1
 
 
     
-  if GPIO.event_detected(FLOW_SENSOR)==False and count > 15 and init_time < datetime.datetime.now() - timedelta(seconds=60):
+  if GPIO.event_detected(FLOW_SENSOR)==False and init_time < datetime.datetime.now() - timedelta(hours=1):
       #time.sleep(60)
       print("threshold met. Upload process begin")
       raw_dict={str(datetime.datetime.now()):count}
       raw_dict = pd.DataFrame(list(raw_dict.items()), columns=['record_date', 'total_count'])
       
       
-      engine=create_engine('postgresql://{pgres_user}:{pgres_pass}#@water-logger.cmoec5ph6uhr.us-east-1.rds.amazonaws.com:5432/raw_logs')
+      engine=create_engine("postgresql://beef:Felicia2020#@water-logger.cmoec5ph6uhr.us-east-1.rds.amazonaws.com:5432/raw_logs")
       conn = engine.raw_connection()
       cur = conn.cursor()
       output=io.StringIO()
@@ -46,13 +47,16 @@ while True:
       
       print(str(count) + ' uploaded')
       count = 0
+      init_time = datetime.datetime.now()
       raw_dict={}
  
     
               
           
           
-          
-      
-      
+#import os
+
+#del os.environ['pgres_user']
+#os.environ.get('pgres_user')   
+#os.environ('pgres_user')=""
       
