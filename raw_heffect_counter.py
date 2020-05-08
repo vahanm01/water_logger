@@ -5,6 +5,7 @@ import datetime
 import io
 import pandas as pd
 from datetime import timedelta
+import os
 
 
 FLOW_SENSOR = 16
@@ -18,13 +19,11 @@ init_time = datetime.datetime.now()
 
 
   
-  
-while True:
+os.environ['water_status']='False'
 
-  if GPIO.event_detected(FLOW_SENSOR)==True:
-
-     count = count + 1
-
+print(os.environ.get('water_status'))
+del os.environ['water_status']
+ 
 
     
   if GPIO.event_detected(FLOW_SENSOR)==False and init_time < datetime.datetime.now() - timedelta(hours=1):
