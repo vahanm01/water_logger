@@ -7,7 +7,6 @@ import pandas as pd
 from datetime import timedelta
 import os
 
-
 FLOW_SENSOR = 16
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(FLOW_SENSOR, GPIO.IN, pull_up_down = GPIO.PUD_UP) 
@@ -19,11 +18,23 @@ init_time = datetime.datetime.now()
 
 
   
-os.environ['water_status']='False'
+  
+while True:
 
-print(os.environ.get('water_status'))
-del os.environ['water_status']
- 
+  if GPIO.event_detected(FLOW_SENSOR)==True:
+
+     count = count + 1
+     
+     with open(os.path.expanduser("~/.bashrc"), "a") as outfile:
+         outfile.write("export water_status=True")
+         outfile.close()
+
+         
+  if GPIO.event_detected(FLOW_SENSOR)==False:
+      
+      with open(os.path.expanduser("~/.bashrc"), "a") as outfile:
+          outfile.write("export water_status=False")      
+          outfile.close()
 
     
   if GPIO.event_detected(FLOW_SENSOR)==False and init_time < datetime.datetime.now() - timedelta(hours=1):
@@ -32,6 +43,9 @@ del os.environ['water_status']
       raw_dict={str(datetime.datetime.now()):count}
       raw_dict = pd.DataFrame(list(raw_dict.items()), columns=['record_date', 'total_count'])
       
+      with open(os.path.expanduser("~/.bashrc"), "a") as outfile:
+          outfile.write("export water_status=False")
+
       
       engine=create_engine("postgresql://beef:Felicia2020#@water-logger.cmoec5ph6uhr.us-east-1.rds.amazonaws.com:5432/raw_logs")
       conn = engine.raw_connection()
