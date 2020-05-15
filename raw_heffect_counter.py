@@ -7,7 +7,9 @@ import pandas as pd
 from datetime import timedelta
 import os
 
-FLOW_SENSOR = 16
+
+print("initiating GPIO")
+FLOW_SENSOR = 4
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(FLOW_SENSOR, GPIO.IN, pull_up_down = GPIO.PUD_UP) 
 GPIO.add_event_detect(FLOW_SENSOR, GPIO.RISING)
@@ -18,7 +20,8 @@ init_time = datetime.datetime.now()
 
 
   
-  
+print("begin listening loop")
+
 while True:
 
   if GPIO.event_detected(FLOW_SENSOR)==True:
