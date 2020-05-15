@@ -27,17 +27,9 @@ while True:
   if GPIO.event_detected(FLOW_SENSOR)==True:
 
      count = count + 1
+     print("total pulses..." + count)
      
-     with open(os.path.expanduser("~/.bashrc"), "a") as outfile:
-         outfile.write("export water_status=True")
-         outfile.close()
-
-         
-  if GPIO.event_detected(FLOW_SENSOR)==False:
       
-      with open(os.path.expanduser("~/.bashrc"), "a") as outfile:
-          outfile.write("export water_status=False")      
-          outfile.close()
 
     
   if GPIO.event_detected(FLOW_SENSOR)==False and init_time < datetime.datetime.now() - timedelta(hours=1):
@@ -46,9 +38,6 @@ while True:
       raw_dict={str(datetime.datetime.now()):count}
       raw_dict = pd.DataFrame(list(raw_dict.items()), columns=['record_date', 'total_count'])
       
-      with open(os.path.expanduser("~/.bashrc"), "a") as outfile:
-          outfile.write("export water_status=False")
-
       
       engine=create_engine("postgresql://beef:Felicia2020#@water-logger.cmoec5ph6uhr.us-east-1.rds.amazonaws.com:5432/raw_logs")
       conn = engine.raw_connection()
@@ -68,7 +57,9 @@ while True:
  
     
               
-          
+       #with open(os.path.expanduser("~/.bashrc"), "a") as outfile:
+         #outfile.write("export water_status=True")
+         #outfile.close()        
           
 #import os
 
