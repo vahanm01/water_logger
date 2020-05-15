@@ -27,7 +27,7 @@ while True:
   if GPIO.event_detected(FLOW_SENSOR)==True:
 
      count = count + 1
-     print("total pulses..." + count)
+     print("total pulses..." + str(count))
      
       
 
