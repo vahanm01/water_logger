@@ -11,8 +11,8 @@ import os
 print("initiating GPIO")
 FLOW_SENSOR = 4
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(FLOW_SENSOR, GPIO.IN, pull_up_down = GPIO.PUD_DOWN) 
-GPIO.add_event_detect(FLOW_SENSOR, GPIO.BOTH)
+GPIO.setup(FLOW_SENSOR, GPIO.IN, pull_up_down = GPIO.PUD_UP) 
+GPIO.add_event_detect(FLOW_SENSOR, GPIO.RISING)
 
 raw_dict={}
 count = 0
