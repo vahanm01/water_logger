@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 import RPi.GPIO as GPIO
 import datetime
 import io
-#!/usr/bin/env python3
+
 
 import pandas as pd
 from datetime import timedelta
