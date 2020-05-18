@@ -34,7 +34,7 @@ while True:
       
 
     
-  if GPIO.event_detected(FLOW_SENSOR)==False and init_time < datetime.datetime.now() - timedelta(seconds=60):
+  if GPIO.event_detected(FLOW_SENSOR)==False and init_time < datetime.datetime.now() - timedelta(hours=1):
       #time.sleep(60)
       print("threshold met. Upload process begin")
       raw_dict={str(datetime.datetime.now()):count}
