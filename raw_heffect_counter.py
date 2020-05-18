@@ -34,12 +34,12 @@ while True:
       
 
     
-  if GPIO.event_detected(FLOW_SENSOR)==False and init_time < datetime.datetime.now() - timedelta(hours=1):
+  if GPIO.event_detected(FLOW_SENSOR)==False and init_time < datetime.datetime.now() - timedelta(seconds=60):
       #time.sleep(60)
       print("threshold met. Upload process begin")
       raw_dict={str(datetime.datetime.now()):count}
       raw_dict = pd.DataFrame(list(raw_dict.items()), columns=['record_date', 'total_count'])
-      
+      raw_dict["type"] = "whole_house"
       
       engine=create_engine("postgresql://beef:Felicia2020#@water-logger.cmoec5ph6uhr.us-east-1.rds.amazonaws.com:5432/raw_logs")
       conn = engine.raw_connection()
