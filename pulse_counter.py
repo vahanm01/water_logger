@@ -32,7 +32,7 @@ while True:
       
 
     
-  if GPIO.event_detected(FLOW_SENSOR)==False and init_time < datetime.datetime.now() - timedelta(seconds=15):
+  if GPIO.event_detected(FLOW_SENSOR)==False and init_time < datetime.datetime.now() - timedelta(hours=1):
       #time.sleep(60)
       print("Threshold met. Upload process initiated.")
       pulse_dict={str(datetime.datetime.now()):pulse}
