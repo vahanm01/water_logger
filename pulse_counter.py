@@ -3,67 +3,64 @@ from sqlalchemy import create_engine
 import RPi.GPIO as GPIO
 import datetime
 import io
-
-
 import pandas as pd
 from datetime import timedelta
 import os
 
 
-print("initiating GPIO")
+print("Initiating GPIO")
 FLOW_SENSOR = 4
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(FLOW_SENSOR, GPIO.IN, pull_up_down = GPIO.PUD_UP) 
 GPIO.add_event_detect(FLOW_SENSOR, GPIO.RISING)
 
-raw_dict={}
-count = 0
+pulse_dict={}
+pulse = 0
 init_time = datetime.datetime.now()
 
 
   
-print("begin listening loop")
+print("Pulse detection is now live.")
 
 while True:
 
   if GPIO.event_detected(FLOW_SENSOR)==True:
 
-     count = count + 1
-     print("total pulses..." + str(count))
+     pulse = pulse + 1
+     print("Total pulses = " + str(pulse) + ' | ' + str(datetime.datetime.now()))
      
       
 
     
   if GPIO.event_detected(FLOW_SENSOR)==False and init_time < datetime.datetime.now() - timedelta(hours=1):
       #time.sleep(60)
-      print("threshold met. Upload process begin")
-      raw_dict={str(datetime.datetime.now()):count}
-      raw_dict = pd.DataFrame(list(raw_dict.items()), columns=['record_date', 'total_count'])
-      raw_dict["type"] = "whole_house"
+      print("Threshold met. Upload process initiated.")
+      pulse_dict={str(datetime.datetime.now()):pulse}
+      pulse_dict = pd.DataFrame(list(pulse_dict.items()), columns=['record_date', 'total_pulses'])
+      pulse_dict["type"] = "whole_house"
       
       engine=create_engine("postgresql://beef:Felicia2020#@water-logger.cmoec5ph6uhr.us-east-1.rds.amazonaws.com:5432/raw_logs")
       conn = engine.raw_connection()
       cur = conn.cursor()
       output=io.StringIO()
-      raw_dict.to_csv(output, sep='\t', header=False, index=False, doublequote=False, escapechar='\\')
+      pulse_dict.to_csv(output, sep='\t', header=False, index=False, doublequote=False, escapechar='\\')
       output.seek(0)
       conents=output.getvalue()
-      cur.copy_from(output, 'raw_effect_counts', null="")
+      cur.copy_from(output, 'pulse_detection', null="")
       conn.commit()
       
       
-      print(str(count) + ' uploaded')
-      count = 0
+      print(str(pulse) + ' Uploaded to DB')
+      pulse = 0
       init_time = datetime.datetime.now()
-      raw_dict={}
+      pulse_dict={}
  
     
               
-       #with open(os.path.expanduser("~/.bashrc"), "a") as outfile:
-         #outfile.write("export water_status=True")
-         #outfile.close()        
+#with open(os.path.expanduser("~/.bashrc"), "a") as outfile:
+  #outfile.write("export water_status=True")
+  #outfile.close()        
           
-#import os
 
 #del os.environ['pgres_user']
 #os.environ.get('pgres_user')   
