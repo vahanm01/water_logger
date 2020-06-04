@@ -26,12 +26,13 @@ print("Pulse detection is now live.")
 
 while True:
     
-  time.sleep(.1)  
+  
 
   if GPIO.event_detected(FLOW_SENSOR)==True:
 
      pulse = pulse + 1
      print("Total pulses = " + str(pulse) + ' | ' + str(datetime.datetime.now()))
+     time.sleep(.1)  
      
       
 
