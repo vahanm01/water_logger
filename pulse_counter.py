@@ -26,7 +26,7 @@ print("Pulse detection is now live.")
 
 while True:
     
-  time.sleep(.200)  
+  time.sleep(.1)  
 
   if GPIO.event_detected(FLOW_SENSOR)==True:
 
