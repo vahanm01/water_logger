@@ -6,6 +6,8 @@ import io
 import pandas as pd
 from datetime import timedelta
 import os
+import time
+import uuid
 
 
 print("Initiating GPIO")
@@ -23,6 +25,8 @@ init_time = datetime.datetime.now()
 print("Pulse detection is now live.")
 
 while True:
+    
+  time.sleep(.200)  
 
   if GPIO.event_detected(FLOW_SENSOR)==True:
 
@@ -38,6 +42,7 @@ while True:
       pulse_dict={str(datetime.datetime.now()):pulse}
       pulse_dict = pd.DataFrame(list(pulse_dict.items()), columns=['record_date', 'total_pulses'])
       pulse_dict["type"] = "whole_house"
+      pulse_dict["id"] = uuid.uuid4()
       
       engine=create_engine("postgresql://beef:Felicia2020#@water-logger.cmoec5ph6uhr.us-east-1.rds.amazonaws.com:5432/raw_logs")
       conn = engine.raw_connection()
