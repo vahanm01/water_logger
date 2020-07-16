@@ -1,4 +1,5 @@
-#!/bin/sh -e
+#!/bin/bash
+
 from sqlalchemy import create_engine
 import RPi.GPIO as GPIO
 import datetime
