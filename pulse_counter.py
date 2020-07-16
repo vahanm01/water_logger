@@ -9,7 +9,7 @@ from datetime import timedelta
 import os
 import time
 import uuid
-
+import subprocess
 
 print("Initiating GPIO")
 FLOW_SENSOR = 4
@@ -35,6 +35,8 @@ while True:
      print("Total pulses = " + str(pulse) + ' | ' + str(datetime.datetime.now()))
      time.sleep(.1)  
      
+     test="TRUE"
+     subprocess.call('echo "${}" | /home/pi/water_logger/pulse_counter.py --args'.format(test), shell=True)
       
 
     
