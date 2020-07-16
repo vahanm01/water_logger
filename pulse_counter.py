@@ -25,9 +25,14 @@ init_time = datetime.datetime.now()
   
 print("Pulse detection is now live.")
 
+test="TRUE"
+subprocess.call('echo "${}" | /home/pi/water_logger/pulse_counter.py --args'.format(test), shell=True)
+    
+
 while True:
     
-  
+
+
 
   if GPIO.event_detected(FLOW_SENSOR)==True:
 
