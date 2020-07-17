@@ -24,12 +24,16 @@ pulse = 0
 init_time = datetime.datetime.now()
 
 os.environ["test"] = "1"
-  
+
+testing="123"  
 print("Pulse detection is now live.")
 
 test="TRUE"
 subprocess.call('echo "${}" | /home/pi/water_logger/pulse_counter.py --args'.format(test), shell=True)
     
+bashCommand = f"test={testing} | /home/pi/water_logger/pulse_counter.py --args"
+os.system(bashCommand) 
+
 
 while True:
     
