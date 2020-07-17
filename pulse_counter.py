@@ -30,10 +30,10 @@ print("Pulse detection is now live.")
 #subprocess.call('echo "${}" | /home/pi/water_logger/pulse_counter.py --args'.format(test), shell=True)
 
 
-subprocess.call('test=123', shell=True)  
+#subprocess.call('test=123', shell=True)  
 
-bashCommand = "test=123"
-os.system(bashCommand) 
+#bashCommand = "test=123"
+#os.system(bashCommand) 
 #os.environ["test"] = "1"
 
 #testing="123"  
