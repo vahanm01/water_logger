@@ -10,19 +10,20 @@ GPIO.add_event_detect(FLOW_SENSOR, GPIO.RISING)
 
 
 
+detect='False' 
 
 while True:
     
   if GPIO.event_detected(FLOW_SENSOR)==True:
-
-     pulse_dict={'timestamp':str(datetime.datetime.now()), 'flow':str('True')}
+     detect='True' 
+     pulse_dict={'timestamp':str(datetime.datetime.now()), 'flow':detect}
      
      with open('detector.json', 'w') as fp:
          json.dump(pulse_dict, fp)
 
   if GPIO.event_detected(FLOW_SENSOR)==False:
-
-     pulse_dict={'timestamp':str(datetime.datetime.now()), 'flow':str('False')}
+     detect='False' 
+     pulse_dict={'timestamp':str(datetime.datetime.now()), 'flow':detect}
      
      with open('detector.json', 'w') as fp:
          json.dump(pulse_dict, fp)  
