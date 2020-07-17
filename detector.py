@@ -1,7 +1,7 @@
 import json 
 import RPi.GPIO as GPIO
 import datetime
-
+import time
 
 FLOW_SENSOR = 4
 GPIO.setmode(GPIO.BCM)
@@ -20,6 +20,8 @@ while True:
      with open('/home/pi/water_logger/detector.json', 'w') as output_file:
          json.dump(pulse_dict, output_file)
          
+    time.sleep(5)
+         
      
     
     
@@ -31,4 +33,4 @@ while True:
      with open('/home/pi/water_logger/detector.json', 'w') as output_file:
          json.dump(pulse_dict, output_file)  
          
-     
+    time.sleep(5)     
