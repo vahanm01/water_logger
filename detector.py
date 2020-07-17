@@ -19,7 +19,8 @@ while True:
      
      with open('/home/pi/water_logger/detector.json', 'w') as output_file:
          json.dump(pulse_dict, output_file)
-         
+    
+    output_file.close()     
     time.sleep(5)
          
      
@@ -32,5 +33,5 @@ while True:
      
      with open('/home/pi/water_logger/detector.json', 'w') as output_file:
          json.dump(pulse_dict, output_file)  
-         
+    output_file.close()           
     time.sleep(5)     
