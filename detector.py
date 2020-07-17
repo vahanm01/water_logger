@@ -17,7 +17,7 @@ while True:
      detect='True' 
      pulse_dict={'timestamp':str(datetime.datetime.now()), 'flow':str('True')}
      
-     with open('detector.json', 'w') as output_file:
+     with open('/home/pi/water_logger/detector.json', 'w') as output_file:
          json.dump(pulse_dict, output_file)
          
      output_file.close()
@@ -28,7 +28,7 @@ while True:
 
      pulse_dict={'timestamp':str(datetime.datetime.now()), 'flow':str('False')}
      
-     with open('detector.json', 'w') as output_file:
+     with open('/home/pi/water_logger/detector.json', 'w') as output_file:
          json.dump(pulse_dict, output_file)  
          
      output_file.close()
