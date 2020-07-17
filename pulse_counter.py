@@ -23,7 +23,7 @@ pulse_dict={}
 pulse = 0
 init_time = datetime.datetime.now()
 
-
+os.environ["test"] = "1"
   
 print("Pulse detection is now live.")
 
