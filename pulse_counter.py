@@ -31,6 +31,8 @@ print("Pulse detection is now live.")
 
 
 #subprocess.call('test=123', shell=True)  
+ 
+
 
 #bashCommand = "test=123"
 #os.system(bashCommand) 
