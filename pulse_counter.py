@@ -41,10 +41,6 @@ while True:
      pulse = pulse + 1
      print("Total pulses = " + str(pulse) + ' | ' + str(datetime.datetime.now()))
      time.sleep(.1)  
-     
-     test="TRUE"
-     subprocess.call('echo "${}" | /home/pi/water_logger/pulse_counter.py --args'.format(test), shell=True)
-      
 
     
   if GPIO.event_detected(FLOW_SENSOR)==False and init_time < datetime.datetime.now() - timedelta(hours=1):
