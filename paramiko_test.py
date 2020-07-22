@@ -28,3 +28,5 @@ with open(localFilePath) as detector_output:
   flow_data = json.load(detector_output)
   
 flow_eval=str(flow_data['flow'])
+
+print(str(flow_eval))
