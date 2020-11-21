@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/bin/bash
 
 import json 
 import RPi.GPIO as GPIO
