@@ -1,5 +1,5 @@
-#!/bin/ping
 
+#!/usr/bin/env python3
 
 
 from pythonping import ping
