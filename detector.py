@@ -1,4 +1,3 @@
-#!/bin/bash
 
 import json 
 import RPi.GPIO as GPIO

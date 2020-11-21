@@ -1,4 +1,4 @@
-#!/bin/bash
+
 
 
 from sqlalchemy import create_engine
