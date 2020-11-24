@@ -18,7 +18,7 @@ def pgres_engine (user, passwd):
     return engine
 
 def pgres_engine_uploader(data, table): 
-    engine = pgres_engine('beef', pgres_pass)
+    engine = pgres_engine('beef', passwd=pgress_pass)
     table=str(table)
     data=data
     conn = engine.raw_connection()
