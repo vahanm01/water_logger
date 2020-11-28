@@ -83,3 +83,6 @@ iwconfig wlan0 power off
 sudo -H -u pi /usr/bin/python3 /home/pi/water_logger/pulse_counter.py > /home/pi/water_logger/pulse_counter_log.log 2>&1 &
 sudo -H -u pi /usr/bin/python3 /home/pi/water_logger/detector.py > /home/pi/water_logger/detector_log.log 2>&1 &
 ```
+
+#Troubleshooting
+Cannot SSH to RPi outside network. Restart routers, check routher NAT forwarding virtual servers. Refresh port 22 by clicking status button or restart the virtual server; or reset. 

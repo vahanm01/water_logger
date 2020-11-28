@@ -24,7 +24,7 @@ while True:
      pulse = pulse + 1
      time.sleep(.1)  
     
-  if GPIO.event_detected(FLOW_SENSOR)==False and init_time < datetime.datetime.now() - timedelta(minutes=4):
+  if GPIO.event_detected(FLOW_SENSOR)==False and init_time < datetime.datetime.now() - timedelta(minutes=15) and pulse > 0:
 
       pulse_dict={str(datetime.datetime.now()):pulse}
       pulse_dict = pd.DataFrame(list(pulse_dict.items()), columns=['record_date', 'total_pulses'])
