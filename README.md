@@ -85,4 +85,7 @@ sudo -H -u pi /usr/bin/python3 /home/pi/water_logger/detector.py > /home/pi/wate
 ```
 
 #Troubleshooting
-Cannot SSH to RPi outside network. Restart routers, check routher NAT forwarding virtual servers. Refresh port 22 by clicking status button or restart the virtual server; or reset. 
+Cannot SSH to RPi outside network. Restart routers, check routher NAT forwarding virtual servers. Refresh port 22 by clicking status button or restart the virtual server; or reset.
+
+#Wiring
+Reed switch Vdd will have 10k resistor to 3.3v. GPIO white wire to GPIO pin will have 1k resistor. Black to groud on GPIO.  
