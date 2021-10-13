@@ -12,31 +12,6 @@ sudo pip3 install SQLAlchemy
 sudo apt-get install libpq-dev
 pip3 install psycopg2
 
-Elastic bean setup
-#Install EB CLI
-https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-windows.html
-
-#launching app on  beanstalk
-Create dir with application.py file. Will always look for that and can be changed in config
-Include requirements.txt folder with below:
-
-Click==7.0
-Flask==1.1.1
-itsdangerous==1.1.0
-Jinja2==2.10.3
-MarkupSafe==1.1.1
-Werkzeug==0.16.0
-
-```bash
-eb init -p python-3.6 flask-water-logger --region us-east-1
-eb create flask-env-water-logger
-eb open
-eb terminate
-```
-
-debug should be false when deploying
-for connecting to RDS postgres, the defined security (default) for the RDS should have inbound rule of custom TCP, port 5432 and anywhere. 
-
 #Auto lan
 ```bash
 sudo /etc/network/interfaces
@@ -83,6 +58,11 @@ iwconfig wlan0 power off
 sudo -H -u pi /usr/bin/python3 /home/pi/water_logger/pulse_counter.py > /home/pi/water_logger/pulse_counter_log.log 2>&1 &
 sudo -H -u pi /usr/bin/python3 /home/pi/water_logger/detector.py > /home/pi/water_logger/detector_log.log 2>&1 &
 ```
+
+## Config file
+Within the local repo on the RPi side, you will need a config.py file as a credentials manager. Do not push to web. 
+
+pgress_pass=<your password to DB>
 
 #Troubleshooting
 Cannot SSH to RPi outside network. Restart routers, check routher NAT forwarding virtual servers. Refresh port 22 by clicking status button or restart the virtual server; or reset.
