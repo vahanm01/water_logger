@@ -1,18 +1,18 @@
-#Upgrading to python 3.8 and making it default
+# Upgrading to python 3.8 and making it default
 https://installvirtual.com/how-to-install-python-3-8-on-raspberry-pi-raspbian/
 
-#Installing sqlalchemy for python 3
+# Installing sqlalchemy for python 3
 
 sudo apt-get install python3-pip
 sudo apt-get install python3-all-dev
 sudo pip3 install SQLAlchemy
 
-#installing psycopg2
+# installing psycopg2
 
 sudo apt-get install libpq-dev
 pip3 install psycopg2
 
-#Auto lan
+# Auto lan
 ```bash
 sudo /etc/network/interfaces
 ```
@@ -25,7 +25,7 @@ wpa-psk {password}
 sudo dhclient wlan0
 
 
-#Detached script run
+# Detached script run
 ```bash
 nohup python3 -u pulse_counter.py &
 ```
@@ -36,22 +36,22 @@ tail -f nohup.out
 
 Above shows the current output of script. Must be pointing to directory where you run script detached. 
 
-#Disable Wifi power management and check settings
+# Disable Wifi power management and check settings
 ```bash
 sudo iwconfig wlan0 power off
 sudo iwconfig
 ```
 
-#SSH into EC2
+# SSH into EC2
 Attach IAM role (full admin access EC2 role) to EC2 instance. I went into the default EC2 role and allowed full admin access.
 Then go to session manager and should appear there.
 
-#Check Python jobs
+# Check Python jobs
 ```bash
 ps -aef | grep python
 ```
 
-#Startup scripts/commands
+# Startup scripts/commands
 At root, edit the /etc/rc.local file with below commands. Not the commands to run scripts at PI user, where Python packages are installed.
 ```bash
 iwconfig wlan0 power off
@@ -64,8 +64,8 @@ Within the local repo on the RPi side, you will need a config.py file as a crede
 
 pgress_pass=<your password to DB>
 
-#Troubleshooting
+# Troubleshooting
 Cannot SSH to RPi outside network. Restart routers, check routher NAT forwarding virtual servers. Refresh port 22 by clicking status button or restart the virtual server; or reset.
 
-#Wiring
+# Wiring
 Reed switch Vdd will have 10k resistor to 3.3v. GPIO white wire to GPIO pin will have 1k resistor. Black to groud on GPIO.  
