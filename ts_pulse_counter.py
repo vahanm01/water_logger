@@ -3,11 +3,11 @@
 import RPi.GPIO as GPIO
 import datetime
 from datetime import timedelta
-import time
-from config import* 
+
 import httplib
 import urllib
-
+import time
+from config import* 
 
 FLOW_SENSOR = 4
 GPIO.setmode(GPIO.BCM)
