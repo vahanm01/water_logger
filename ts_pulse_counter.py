@@ -2,11 +2,12 @@
 
 import RPi.GPIO as GPIO
 import datetime
-import pandas as pd
 from datetime import timedelta
 import time
-import uuid
 from config import* 
+import httplib
+import urllib
+
 
 FLOW_SENSOR = 4
 GPIO.setmode(GPIO.BCM)
