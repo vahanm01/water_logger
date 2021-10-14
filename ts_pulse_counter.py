@@ -29,7 +29,7 @@ while True:
     
   if GPIO.event_detected(FLOW_SENSOR)==False and init_time < datetime.datetime.now() - timedelta(minutes=1) and pulse > 0:
       #New pulse detection is 13.33 pulses per gallon. We double because there are two reed switches each at halfway.      
-      pulse=pulse/26.7
+      pulse=round(pulse/26.7)
       
     
       
