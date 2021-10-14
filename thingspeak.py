@@ -24,7 +24,7 @@ while True:
   if GPIO.event_detected(FLOW_SENSOR)==True:
      detect=1
      
-     params = urllib.urlencode({'field1': detect, 'key':key }) 
+     params = urllib.urlencode({'Water_on': detect, 'key':key }) 
      headers = {"Content-typZZe": "application/x-www-form-urlencoded","Accept": "text/plain"}
      conn = httplib.HTTPConnection("api.thingspeak.com:80")
      conn.request("POST", "/update", params, headers)
