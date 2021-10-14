@@ -33,7 +33,7 @@ while True:
       
     
       
-      params = urllib.parse.urlencode({'Gallons': pulse, 'key':key }) 
+      params = urllib.parse.urlencode({'field1': pulse, 'key':key }) 
       headers = {"Content-typZZe": "application/x-www-form-urlencoded","Accept": "text/plain"}
       conn = httplib.HTTPConnection("api.thingspeak.com:80")
       conn.request("POST", "/update", params, headers)
