@@ -4,7 +4,7 @@ import RPi.GPIO as GPIO
 import datetime
 from datetime import timedelta
 
-import httplib
+import http.client as httplib
 import urllib
 import time
 from config import* 
