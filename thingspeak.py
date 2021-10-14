@@ -9,9 +9,9 @@ import datetime
 import httplib
 import urllib
 import time
+from config import* 
 
-
-key = "VZ5GULKMWUUFD0S0"  # Put your API Key here
+key = ts_api_key  # Put your API Key here
 
 
 FLOW_SENSOR = 4
